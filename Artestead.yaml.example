@@ -1,0 +1,16 @@
+ip: 192.168.10.40
+memory: 2048
+cpus: 1
+provider: virtualbox
+folders:
+    -
+        map: /Users/olivier/Code/1617.nmdad2.local
+        to: /home/vagrant/Code/1617-nmdad2-local
+        type: nfs
+sites:
+    -
+        map: 1617.nmdad2.local
+        to: /home/vagrant/Code/1617-nmdad2-local/laravel/public
+        type: laravel
+name: 1617-nmdad2-local
+hostname: www.1617.nmdad2.local
