@@ -22,3 +22,16 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Vote::class, function (Faker\Generator $faker) {
+    return [
+        'uuid' => $faker->unique()->uuid,
+        'election_id' => $faker->numberBetween(1, 1000),
+        'vote_data' => json_encode([
+            'test' =>  $faker->word,
+            'test2' => $faker->word,
+        ]),
+    ];
+});

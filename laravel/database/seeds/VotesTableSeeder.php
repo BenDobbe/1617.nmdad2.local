@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\Vote;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class VotesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
-        $this->call(VotesTableSeeder::class);
+        factory(Vote::class, 50)->create();
     }
 }
