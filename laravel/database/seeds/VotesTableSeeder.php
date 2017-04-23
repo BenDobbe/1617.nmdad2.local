@@ -12,6 +12,8 @@ class VotesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Vote::class, 50)->create();
+        factory(Vote::class, 50)->create([
+            'checksum' => 'secret',
+        ]);
     }
 }

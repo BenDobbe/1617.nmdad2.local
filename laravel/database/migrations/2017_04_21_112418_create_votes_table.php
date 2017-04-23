@@ -16,14 +16,18 @@ class CreateVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create(self::TABLE, function (Blueprint $table) {
-            $table->uuid(self::PK);
+        Schema::create(static::TABLE, function (Blueprint $table) {
+            // Meta Data
+            $table->uuid(static::PK)
+                ->primary(static::PK);
+            $table->string('checksum')
+                ->nullable();
 
+            // Foreign Keys
             $table->unsignedInteger('election_id');
 
-            $table->json('vote_data');
-            $table->string('checksum')
-                  ->nullable();
+            // Data
+            $table->json('details');
         });
     }
 
@@ -34,6 +38,6 @@ class CreateVotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(self::TABLE);
+        Schema::dropIfExists(static::TABLE);
     }
 }

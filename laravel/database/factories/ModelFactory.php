@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Vote;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -12,7 +15,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -23,15 +26,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Models\Vote::class, function (Faker\Generator $faker) {
+$factory->define(Vote::class, function (Faker\Generator $faker) {
     return [
-        'uuid' => $faker->unique()->uuid,
         'election_id' => $faker->numberBetween(1, 1000),
-        'vote_data' => json_encode([
-            'test' =>  $faker->word,
+        'details' => [
+            'test1' =>  $faker->word,
             'test2' => $faker->word,
-        ]),
+        ],
     ];
 });

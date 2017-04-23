@@ -1,0 +1,44 @@
+/// The 7-1 Pattern
+
+// Abstracts
+//@import
+//  '1-abstracts/variables',
+//  '1-abstracts/functions',
+//  '1-abstracts/mixins',
+//  '1-abstracts/placeholders';
+
+// Vendors
+@import
+  '2-vendors/bootstrap';
+
+// Base
+//@import
+//  '3-base/reset',
+//  '3-base/typography';
+
+
+// Layout
+//@import
+//  '4-layout/grid',
+//  '4-layout/header',
+//  '4-layout/footer',
+//  '4-layout/forms',
+//  '4-layout/navigation',
+//  '4-layout/sidebar';
+
+// Components
+//@import
+//  '5-components/buttons',
+//  '5-components/carousel',
+//  '5-components/cover',
+//  '5-components/dropdown';
+
+// Pages
+//@import
+//  '6-pages/contact',
+//  '6-pages/home';
+
+// Themes
+//@import
+//  '7-themes/admin',
+//  '7-themes/theme';

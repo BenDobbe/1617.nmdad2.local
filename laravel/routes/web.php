@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([
+    'name' => 'verify',
+    'as' => 'verify.'
+], function () {
+    Route::get('/verify', 'VerifyController@index')->name('index');
+    Route::post('/verify', 'VerifyController@check')->name('check');
+});
