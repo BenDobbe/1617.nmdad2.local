@@ -14,7 +14,7 @@
                                 <label for="uuid" class="col-form-label col-md-3">Vote <abbr title="Universally Unique Identifier">UUID</abbr></label>
 
                                 <div class="col-md-9">
-                                    <input id="uuid" type="text" placeholder="00000000-0000-0000-0000-000000000000" _pattern="[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}" class="form-control" name="uuid" value="{{ old('uuid') }}" required autofocus autocomplete="off">
+                                    <input id="uuid" type="text" placeholder="00000000-0000-0000-0000-000000000000" pattern="[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}" class="form-control" name="uuid" value="{{ old('uuid') }}" required autofocus autocomplete="off">
                                     @if ($errors->has('uuid'))
                                         <small class="form-text text-danger">
                                             <strong>{{ $errors->first('uuid') }}</strong>

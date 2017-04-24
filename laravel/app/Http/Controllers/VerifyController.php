@@ -70,7 +70,7 @@ class VerifyController extends Controller
     protected function validator(array $data): Validator
     {
         return \Validator::make($data, [
-            'uuid' => 'required|string|regex:/^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/',
+            'uuid' => 'required|string|regex:/^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/|exists:votes',
             'password' => 'required|string|min:6',
         ]);
     }

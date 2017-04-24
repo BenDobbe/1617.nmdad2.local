@@ -8,6 +8,11 @@ use CreateVotesTable;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * App\Models\Vote
+ *
+ * @mixin \Eloquent
+ */
 class Vote extends Model
 {
     /**
