@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "gdmgent/artestead",
-            "version": "5.2.1",
+            "version": "v5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gdmgent/artestead.git",
-                "reference": "ec654f3051357f8562fe5070e29ed0c7ce2bb098"
+                "reference": "1795d8f59c9132fe240ba4cab0bcf34762e52535"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gdmgent/artestead/zipball/ec654f3051357f8562fe5070e29ed0c7ce2bb098",
-                "reference": "ec654f3051357f8562fe5070e29ed0c7ce2bb098",
+                "url": "https://api.github.com/repos/gdmgent/artestead/zipball/1795d8f59c9132fe240ba4cab0bcf34762e52535",
+                "reference": "1795d8f59c9132fe240ba4cab0bcf34762e52535",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
                 }
             ],
             "description": "Artestead is a fork of Laravel Homestead for use at Artevelde University College Ghent.",
-            "time": "2017-04-11T06:12:34+00:00"
+            "time": "2017-04-27T18:16:45+00:00"
         },
         {
             "name": "psr/log",

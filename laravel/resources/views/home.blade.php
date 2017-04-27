@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-md-center mt-3">
             <div class="col-md-8">
-                <div class="jumbotron">
+                <div class="jumbotron text-center">
                     <h1>Dashboard</h1>
                     <p class="lead">You are logged in!</p>
                 </div>
