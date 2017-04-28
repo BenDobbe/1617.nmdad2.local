@@ -54,8 +54,10 @@ class ArteveldeDbUser extends Command
         $dbAdminName = getenv('DB_ADMIN_USERNAME');
         $dbAdminPassword = getenv('DB_ADMIN_PASSWORD');
 
-        // Add database user with all privileges on (nonexistent) database.
-        $sql = "GRANT ALL PRIVILEGES ON \`${dbName}\`.* TO '${dbUsername}' IDENTIFIED BY '${dbPassword}'";
+        $sql ="GRANT ALL PRIVILEGES ON \`${dbName}\`.* TO '${dbUsername}' IDENTIFIED BY '${dbPassword}'";
+        if (DIRECTORY_SEPARATOR == '\\') {
+            $sql = str_replace('\`', '`', $sql);
+        }
         $command = sprintf('mysql --user=%s --password=%s --execute="%s"', $dbAdminName, $dbAdminPassword, $sql);
         exec($command);
 

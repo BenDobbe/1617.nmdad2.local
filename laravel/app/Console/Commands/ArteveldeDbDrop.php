@@ -54,6 +54,10 @@ class ArteveldeDbDrop extends Command
 
         // Drop database
         $sql = "DROP DATABASE IF EXISTS \`${dbName}\`";
+        if (DIRECTORY_SEPARATOR == '\\') {
+            $sql = str_replace('\`', '`', $sql);
+        }
+
         $command = sprintf('mysql --user=%s --password=%s --execute="%s"', $dbUsername, $dbPassword, $sql);
         exec($command);
 

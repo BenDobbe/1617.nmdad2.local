@@ -52,12 +52,14 @@ class ArteveldeDbRestore extends Command
         $dbUsername = getenv('DB_USERNAME');
         $dbPassword = getenv('DB_PASSWORD');
         $dbDumpPath = getcwd().'/'.getenv('DB_DUMP_PATH');
+        $dbDumpPath = str_replace('/', DIRECTORY_SEPARATOR, $dbDumpPath);
 
         // Reset database.
         $this->callSilent('artevelde:db:reset');
 
         // Restore SQL dump.
         $command = "mysql --user=${dbUsername} --password=${dbPassword} ${dbName} < ${dbDumpPath}/latest.sql";
+        $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
         exec($command);
 
         $this->comment("Backup for database `${dbName}` restored!");

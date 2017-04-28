@@ -58,6 +58,9 @@ class ArteveldeDbInit extends Command
 
         // Create database.
         $sql = "CREATE DATABASE IF NOT EXISTS \`${dbName}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+        if (DIRECTORY_SEPARATOR == '\\') {
+            $sql = str_replace('\`', '`', $sql);
+        }
         $command = sprintf('mysql --user=%s --password=%s --execute="%s"', $dbUsername, $dbPassword, $sql);
         exec($command);
 

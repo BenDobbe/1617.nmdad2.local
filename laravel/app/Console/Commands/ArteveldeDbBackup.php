@@ -52,17 +52,20 @@ class ArteveldeDbBackup extends Command
         $dbUsername = getenv('DB_USERNAME');
         $dbPassword = getenv('DB_PASSWORD');
         $dbDumpPath = getcwd().'/'.getenv('DB_DUMP_PATH');
+        $dbDumpPath = str_replace('/', DIRECTORY_SEPARATOR, $dbDumpPath);
 
         // Create folder(s)
-        $command = "mkdir -p ${dbDumpPath}";
-        exec($command);
+        @mkdir($dbDumpPath, null, true);
 
         // Create SQL database dump
         $command = "mysqldump --user=${dbUsername} --password=${dbPassword} --databases ${dbName} > ${dbDumpPath}/latest.sql";
+        $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
         exec($command);
 
         // Gzip and timestamp created SQL database dump
-        $command = "gzip -cr ${dbDumpPath}/latest.sql > ${dbDumpPath}/$(date +\"%Y-%m-%d_%H%M%S\").sql.gz";
+        $date = date('Y-m-d_His');
+        $command = "gzip -cr ${dbDumpPath}/latest.sql > ${dbDumpPath}/${date}.sql.gz";
+        $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
         exec($command);
 
         $this->comment("Backup for database `${dbName}` stored!");
