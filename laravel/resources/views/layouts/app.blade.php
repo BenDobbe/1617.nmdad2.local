@@ -44,13 +44,12 @@
                         @endforeach
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="submitLogoutForm()">
+                            <a class="nav-link" href="{{ url('logout') }}" onclick="submitLogoutForm(event)">
                                 logout
                             </a>
                             <form class="hidden-xs-up" id="logout-form" action="{{ route('logout') }}" method="POST">
                                 {{ csrf_field() }}
                             </form>
-
                         </li>
                     @endif
                 </ul>
@@ -61,7 +60,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
 @if (Auth::user())
     <script>
-        function submitLogoutForm() {
+        function submitLogoutForm(event) {
             event.preventDefault();
             document.getElementById('logout-form').submit();
         }
