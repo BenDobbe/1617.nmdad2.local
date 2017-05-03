@@ -48,14 +48,14 @@ class ArteveldeDbUser extends Command
     public function handle()
     {
         // Get variables from `.env`.
-        $dbName = getenv('DB_DATABASE');
-        $dbUsername = getenv('DB_USERNAME');
-        $dbPassword = getenv('DB_PASSWORD');
-        $dbAdminName = getenv('DB_ADMIN_USERNAME');
-        $dbAdminPassword = getenv('DB_ADMIN_PASSWORD');
+        $dbName = env('DB_DATABASE');
+        $dbUsername = env('DB_USERNAME');
+        $dbPassword = env('DB_PASSWORD');
+        $dbAdminName = env('DB_ADMIN_USERNAME');
+        $dbAdminPassword = env('DB_ADMIN_PASSWORD');
 
         $sql ="GRANT ALL PRIVILEGES ON \`${dbName}\`.* TO '${dbUsername}' IDENTIFIED BY '${dbPassword}'";
-        if (DIRECTORY_SEPARATOR == '\\') {
+        if (windows_os()) {
             $sql = str_replace('\`', '`', $sql);
         }
         $command = sprintf('mysql --user=%s --password=%s --execute="%s"', $dbAdminName, $dbAdminPassword, $sql);

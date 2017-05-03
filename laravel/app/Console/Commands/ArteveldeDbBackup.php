@@ -48,24 +48,27 @@ class ArteveldeDbBackup extends Command
     public function handle()
     {
         // Get variables from `.env`
-        $dbName = getenv('DB_DATABASE');
-        $dbUsername = getenv('DB_USERNAME');
-        $dbPassword = getenv('DB_PASSWORD');
-        $dbDumpPath = getcwd().'/'.getenv('DB_DUMP_PATH');
-        $dbDumpPath = str_replace('/', DIRECTORY_SEPARATOR, $dbDumpPath);
+        $dbName = env('DB_DATABASE');
+        $dbUsername = env('DB_USERNAME');
+        $dbPassword = env('DB_PASSWORD');
+        $dbDumpPath = getcwd() . '/' . env('DB_DUMP_PATH');
 
         // Create folder(s)
         @mkdir($dbDumpPath, null, true);
 
         // Create SQL database dump
         $command = "mysqldump --user=${dbUsername} --password=${dbPassword} --databases ${dbName} > ${dbDumpPath}/latest.sql";
-        $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
+        if (windows_os()) {
+            $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
+        }
         exec($command);
 
         // Gzip and timestamp created SQL database dump
         $date = date('Y-m-d_His');
         $command = "gzip -cr ${dbDumpPath}/latest.sql > ${dbDumpPath}/${date}.sql.gz";
-        $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
+        if (windows_os()) {
+            $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
+        }
         exec($command);
 
         $this->comment("Backup for database `${dbName}` stored!");

@@ -48,9 +48,9 @@ class ArteveldeDbInit extends Command
     public function handle()
     {
         // Get variables from `.env`.
-        $dbName = getenv('DB_DATABASE');
-        $dbUsername = getenv('DB_USERNAME');
-        $dbPassword = getenv('DB_PASSWORD');
+        $dbName = env('DB_DATABASE');
+        $dbUsername = env('DB_USERNAME');
+        $dbPassword = env('DB_PASSWORD');
 
         // Create database user and drop database if it already exists.
         $this->callSilent('artevelde:db:user');
@@ -58,7 +58,7 @@ class ArteveldeDbInit extends Command
 
         // Create database.
         $sql = "CREATE DATABASE IF NOT EXISTS \`${dbName}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
-        if (DIRECTORY_SEPARATOR == '\\') {
+        if (windows_os()) {
             $sql = str_replace('\`', '`', $sql);
         }
         $command = sprintf('mysql --user=%s --password=%s --execute="%s"', $dbUsername, $dbPassword, $sql);

@@ -48,13 +48,13 @@ class ArteveldeDbDrop extends Command
     public function handle()
     {
         // Get variables from `.env`
-        $dbName = getenv('DB_DATABASE');
-        $dbUsername = getenv('DB_USERNAME');
-        $dbPassword = getenv('DB_PASSWORD');
+        $dbName = env('DB_DATABASE');
+        $dbUsername = env('DB_USERNAME');
+        $dbPassword = env('DB_PASSWORD');
 
         // Drop database
         $sql = "DROP DATABASE IF EXISTS \`${dbName}\`";
-        if (DIRECTORY_SEPARATOR == '\\') {
+        if (windows_os()) {
             $sql = str_replace('\`', '`', $sql);
         }
 

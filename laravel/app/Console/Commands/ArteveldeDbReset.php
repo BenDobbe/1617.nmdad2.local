@@ -48,7 +48,7 @@ class ArteveldeDbReset extends Command
     public function handle()
     {
         // Get variables from `.env`.
-        $dbName = getenv('DB_DATABASE');
+        $dbName = env('DB_DATABASE');
 
         // Drop database and initialize.
         $this->callSilent('artevelde:db:drop');

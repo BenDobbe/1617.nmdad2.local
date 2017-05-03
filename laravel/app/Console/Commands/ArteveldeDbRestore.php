@@ -48,18 +48,19 @@ class ArteveldeDbRestore extends Command
     public function handle()
     {
         // Get variables from `.env`
-        $dbName = getenv('DB_DATABASE');
-        $dbUsername = getenv('DB_USERNAME');
-        $dbPassword = getenv('DB_PASSWORD');
-        $dbDumpPath = getcwd().'/'.getenv('DB_DUMP_PATH');
-        $dbDumpPath = str_replace('/', DIRECTORY_SEPARATOR, $dbDumpPath);
+        $dbName = env('DB_DATABASE');
+        $dbUsername = env('DB_USERNAME');
+        $dbPassword = env('DB_PASSWORD');
+        $dbDumpPath = getcwd() . '/' . env('DB_DUMP_PATH');
 
         // Reset database.
         $this->callSilent('artevelde:db:reset');
 
         // Restore SQL dump.
         $command = "mysql --user=${dbUsername} --password=${dbPassword} ${dbName} < ${dbDumpPath}/latest.sql";
-        $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
+        if (windows_os()) {
+            $command = str_replace('/', DIRECTORY_SEPARATOR, $command);
+        }
         exec($command);
 
         $this->comment("Backup for database `${dbName}` restored!");
